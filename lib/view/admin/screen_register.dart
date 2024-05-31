@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:secure_kare/model/agentmodel.dart';
@@ -73,7 +74,8 @@ class ScreenRegister extends StatelessWidget {
             Container(
               decoration: const BoxDecoration(color: Colors.white),
               child: TextFormField(
-                 textInputAction: TextInputAction.next,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                textInputAction: TextInputAction.next,
                 controller: agentName,
                 validator: (value) {
                   if (value!.isNotEmpty) {
@@ -119,7 +121,8 @@ class ScreenRegister extends StatelessWidget {
             Container(
               decoration: const BoxDecoration(color: Colors.white),
               child: TextFormField(
-                 textInputAction: TextInputAction.next,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                textInputAction: TextInputAction.next,
                 validator: (value) {
                   if (value!.isNotEmpty) {
                     return null;
@@ -148,7 +151,8 @@ class ScreenRegister extends StatelessWidget {
             Container(
               decoration: const BoxDecoration(color: Colors.white),
               child: TextFormField(
-                 textInputAction: TextInputAction.next,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                textInputAction: TextInputAction.next,
                 controller: addresscontroller,
                 validator: (value) {
                   if (value!.isNotEmpty) {
@@ -172,7 +176,8 @@ class ScreenRegister extends StatelessWidget {
             Container(
               decoration: const BoxDecoration(color: Colors.white),
               child: TextFormField(
-                 textInputAction: TextInputAction.next,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                textInputAction: TextInputAction.next,
                 controller: citycontroller,
                 validator: (value) {
                   if (value!.isNotEmpty) {
@@ -195,7 +200,8 @@ class ScreenRegister extends StatelessWidget {
             Container(
               decoration: const BoxDecoration(color: Colors.white),
               child: TextFormField(
-                 textInputAction: TextInputAction.next,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                textInputAction: TextInputAction.next,
                 validator: (value) {
                   if (!(value!.contains("@gmail.com"))) {
                     return "Invalid email";
@@ -218,7 +224,9 @@ class ScreenRegister extends StatelessWidget {
             Container(
               decoration: const BoxDecoration(color: Colors.white),
               child: TextFormField(
-                 textInputAction: TextInputAction.next,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                inputFormatters: [LengthLimitingTextInputFormatter(10)],
+                textInputAction: TextInputAction.next,
                 validator: (value) {
                   if (value!.isNotEmpty) {
                     return null;
@@ -268,13 +276,15 @@ class ScreenRegister extends StatelessWidget {
             Container(
               decoration: const BoxDecoration(color: Colors.white),
               child: TextFormField(
-                 textInputAction: TextInputAction.next,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                textInputAction: TextInputAction.next,
                 validator: (value) {
-                  if (value!.isNotEmpty) {
-                    return null;
-                  } else {
-                    return "Invalid Password";
+                  if (value!.isEmpty) {
+                    return "please enter password";
+                  } else if (value.length <= 6) {
+                    return "add more than 6 characters";
                   }
+                  return null;
                 },
                 controller: passwordController,
                 keyboardType: TextInputType.number,
@@ -287,7 +297,7 @@ class ScreenRegister extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 20  ,
+              height: 20,
             ),
             OutlinedButton(
                 style: OutlinedButton.styleFrom(

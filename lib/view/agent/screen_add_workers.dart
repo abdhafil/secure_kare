@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:provider/provider.dart';
@@ -8,6 +11,7 @@ import 'package:secure_kare/view/agent/screen_homeagent.dart';
 import 'package:secure_kare/view/user/screen_user_home.dart';
 import 'package:secure_kare/viewmodel/agent_controller.dart';
 import 'package:secure_kare/viewmodel/function_provider.dart';
+import 'package:secure_kare/viewmodel/manager.dart';
 
 class ScreenAddWorker extends StatelessWidget {
   ScreenAddWorker({super.key});
@@ -20,8 +24,12 @@ class ScreenAddWorker extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
   String? imageUrl;
+
+  final usertype = {'Male', 'Female', 'others'};
   @override
   Widget build(BuildContext context) {
+    String? attendenceValue;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -103,6 +111,40 @@ class ScreenAddWorker extends StatelessWidget {
                       contentPadding: EdgeInsets.all(10),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10))),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                // ListView.builder(
+                //   itemCount: 2,
+                //   shrinkWrap: true,
+                //   itemBuilder: (context, index) {
+                //   return Radio(
+                //         value: "absent$index",
+                //         groupValue: attendenceValue,
+                //         fillColor: MaterialStateColor.resolveWith((states) => Colors.redAccent),
+                //         onChanged: (val) {
+                //           // setState(() {
+                //           //   attendenceValue = val.toString();
+                //           // });
+                //         },
+                //     );
+                // },) ,
+                Consumer<FunProvider>(
+                  builder: (context, instance, child) {
+                    return DropdownButtonFormField(
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          contentPadding: EdgeInsets.all(12)),
+                      hint: Text('Select user'),
+                      items: usertype.map((e) {
+                        return DropdownMenuItem(value: e, child: Text(e));
+                      }).toList(),
+                      onChanged: (value) {
+                        instance.valuechange(value);
+                      },
+                    );
+                  },
                 ),
                 const SizedBox(
                   height: 10,
@@ -229,57 +271,64 @@ class ScreenAddWorker extends StatelessWidget {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 130),
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(255, 13, 42, 91)),
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          if (imageUrl != null) {
-                            AgentController()
-                                .addWorkers(WorkersModel(
-                              agencyId: FirebaseAuth.instance.currentUser!.uid,
-                              workersname: workername.text,
-                              workersplace: workerplace.text,
-                              workersage: workerage.text,
-                              workersemail: workeremail.text,
-                              workerspassword: workerpassword.text,
-                              workerimage: imageUrl,
-                            ))
-                                .then(
-                              (value) {
-                                final pop = Navigator.of(context);
-                                pop.pop();
-                                pop.pop();
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                  backgroundColor: Colors.green,
-                                  content: Text(
-                                    "Registration Success",
-                                    style: GoogleFonts.plusJakartaSans(),
-                                  ),
-                                ));
-                              },
-                            );
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              backgroundColor: Colors.red,
-                              content: Text(
-                                "Pick Image",
-                                style: GoogleFonts.plusJakartaSans(),
-                              ),
-                            ));
-                          }
-                        }
-                        // if (_formKey.currentState!.validate()) {
+                    padding: const EdgeInsets.only(left: 130),
+                    child: Consumer<FunProvider>(
+                      builder: (context, funprvdr, child) {
+                        return ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    Color.fromARGB(255, 13, 42, 91)),
+                            onPressed: () {
+                               
+                              if (_formKey.currentState!.validate()) {
+                                if (imageUrl != null) {
+                                  AgentController()
+                                      .addWorkers(WorkersModel(
+                                    agencyId: FirebaseAuth.instance.currentUser!.uid,
+                                    workersname: workername.text,
+                                    workersplace: workerplace.text,
+                                    workersage: workerage.text,
+                                    workersemail: workeremail.text,
+                                    workerspassword: workerpassword.text,
+                                    workerimage: imageUrl,
+                                    selectedusertype: funprvdr.selectedtype.toString(),
+                                    indentity: [''],
+                                  ))
+                                      .then(
+                                    (value) {
+                                      final pop = Navigator.of(context);
+                                      pop.pop();
+                                      pop.pop();
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                        backgroundColor: Colors.green,
+                                        content: Text(
+                                          "Registration Success",
+                                          style: GoogleFonts.plusJakartaSans(),
+                                        ),
+                                      ));
+                                    },
+                                  );
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                    backgroundColor: Colors.red,
+                                    content: Text(
+                                      "Pick Image",
+                                      style: GoogleFonts.plusJakartaSans(),
+                                    ),
+                                  ));
+                                }
+                              }
+                              // if (_formKey.currentState!.validate()) {
 
-                        // }
+                              // }
+                            },
+                            child: Text(
+                              " Update",
+                              style: GoogleFonts.manrope(),
+                            ));
                       },
-                      child: Text(
-                        " Update",
-                        style: GoogleFonts.manrope(),
-                      )),
-                )
+                    ))
               ],
             ),
           ),

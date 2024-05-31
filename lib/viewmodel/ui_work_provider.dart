@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:secure_kare/model/projectmodel.dart';
+import 'package:secure_kare/screen_splash.dart';
 import 'package:secure_kare/view/agent/screen_aboutusagent.dart';
 import 'package:secure_kare/view/agent/screen_add_manager.dart';
 import 'package:secure_kare/view/agent/screen_add_project.dart';
@@ -21,6 +22,7 @@ import 'package:secure_kare/view/police/screen_aboutus.dart';
 import 'package:secure_kare/view/police/screen_alert.dart';
 import 'package:secure_kare/view/police/screen_notification.dart';
 import 'package:secure_kare/view/police/screen_upsa.dart';
+import 'package:secure_kare/view/user/reoportlist.dart';
 import 'package:secure_kare/view/user/screen_personalinfo.dart';
 import 'package:secure_kare/view/user/screen_reportissue.dart';
 import 'package:secure_kare/view/user/screen_selectidentity.dart';
@@ -68,6 +70,18 @@ class WorkProvider extends ChangeNotifier {
   List department = ["Carpenter", "Electrician", "Construction"];
   List manager = ["salu", "sinu", "sachu"];
   bool isselected = false;
+  
+
+
+
+   bool isobsucure = false;
+
+   togle(){
+     isobsucure = !isobsucure;
+     notifyListeners();
+   }
+ 
+    
   //available workers
   workassigndropdown(context) {
     return showDialog(
@@ -432,7 +446,7 @@ class WorkProvider extends ChangeNotifier {
                           borderRadius: BorderRadius.circular(15))),
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ScreenReportIssue(),
+                      builder: (context) => ReportView(),
                     ));
                   },
                   child: Row(
@@ -489,12 +503,10 @@ class WorkProvider extends ChangeNotifier {
                 ),
                 TextButton(
                     onPressed: () async {
-                      await FirebaseAuth.instance.signOut();
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) {
-                          return ScreenUserLogin();
-                        },
-                      ));
+                      await FirebaseAuth.instance.signOut().then((value){
+                        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => ScreenSplash(),), (route) => false);
+                      });
+                       
                     },
                     child: Text(
                       "Logout",

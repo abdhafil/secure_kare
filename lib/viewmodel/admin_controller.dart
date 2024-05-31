@@ -3,12 +3,15 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_otp/email_otp.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:secure_kare/model/agentmodel.dart';
 import 'package:secure_kare/model/managermodel.dart';
 import 'package:secure_kare/model/report_model.dart';
 import 'package:secure_kare/model/usermodel.dart';
 import 'package:secure_kare/model/workersmodel.dart';
+import 'package:secure_kare/view/admin/admin_login.dart';
 
 class AdminController with ChangeNotifier {
   int selectedIndex = 0;
@@ -179,4 +182,11 @@ class AdminController with ChangeNotifier {
     listofReporst =
         snapsht.docs.map((e) => Reports.fromJson(e.data())).toList();
   }
+
+
+   Future logout(BuildContext context)async{
+  await  FirebaseAuth.instance.signOut().then((value) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => AdminLogin(),),);
+    });
+   }
 }

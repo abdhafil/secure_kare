@@ -9,9 +9,45 @@ class CustomeDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   
+    Future<void> _showMyDialog() async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Signout event'),
+        content: const SingleChildScrollView(
+          child: ListBody(
+            children: <Widget>[
+              Text('Are you sure logout'),
+              
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          Consumer<AdminController>(builder: (context, intance, child) {
+            return TextButton(
+            child: const Text('yes'),
+            onPressed: () async{
+              await   intance.logout(context);
+            },
+          );
+          },),
+          TextButton(
+            child: const Text('no'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
     final controller = Provider.of<AdminController>(context, listen: false);
     return Container(
-      width: 600,
+      width: 550,
       // height: 800,
       color: Color.fromARGB(255, 234, 229, 229),
       child: Padding(
@@ -136,6 +172,24 @@ class CustomeDrawer extends StatelessWidget {
             //       "Notifications",
             //       style: GoogleFonts.outfit(fontSize: 18, color: Colors.black),
             //     ))
+            SizedBox(
+              height: MediaQuery.of(context).size.height*.060,
+            ),
+              GestureDetector(
+                onTap: () async{
+               
+               await _showMyDialog();
+
+                },
+                child: 
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.logout),
+                      Text('Logout'),
+                  ],
+                ),
+              ),
           ],
         ),
       ),

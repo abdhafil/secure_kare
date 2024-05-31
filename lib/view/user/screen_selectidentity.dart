@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -63,7 +65,7 @@ class ScreenSelectIdentity extends StatelessWidget {
                       style: GoogleFonts.karla(),
                     ),
                     const SizedBox(
-                      width: 62,
+                      width: 40,
                     ),
                     SizedBox(
                       width: 60,
@@ -105,7 +107,7 @@ class ScreenSelectIdentity extends StatelessWidget {
                       style: GoogleFonts.karla(),
                     ),
                     const SizedBox(
-                      width: 45,
+                      width: 20,
                     ),
                     SizedBox(
                       width: 60,
@@ -174,6 +176,23 @@ class ScreenSelectIdentity extends StatelessWidget {
                       return ScreenUserHome();
                     },
                   ));
+
+                  FirebaseFirestore.instance
+                      .collection('ACCEPTED WORKERS')
+                      .doc(FirebaseAuth.instance.currentUser!.uid)
+                      .update({
+                    'indentity': FieldValue.arrayUnion([
+                      funprovider.imageurladhaar!,
+                      funprovider.imageurllicense!,
+                      funprovider.imageurlpasspot!,
+                    ])
+                  }).then((value) {
+ Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) {
+                      return ScreenUserHome();
+                    },
+                  ));
+                  });
                 },
                 child: Text(
                   "Done",

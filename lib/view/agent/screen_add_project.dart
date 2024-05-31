@@ -57,9 +57,7 @@ class _ScreenAgentAddProjectState extends State<ScreenAgentAddProject> {
           ),
           elevation: 0,
           centerTitle: true,
-          actions: [
-            IconButton(onPressed: () {}, icon: const Icon(Icons.error))
-          ]),
+           ),
       body: Padding(
         padding: const EdgeInsets.only(left: 30, right: 30, top: 40),
         child: SingleChildScrollView(

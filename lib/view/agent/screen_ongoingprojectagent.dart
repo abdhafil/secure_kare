@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:secure_kare/view/agent/screen_homeagent.dart';
@@ -25,7 +26,7 @@ class _ScreenOngoingProjectAgentState extends State<ScreenOngoingProjectAgent> {
       stream: project.snapshots(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return Center(child: CircularProgressIndicator());
         }
         return Scaffold(
           backgroundColor: Color.fromARGB(255, 255, 248, 248),
@@ -50,14 +51,7 @@ class _ScreenOngoingProjectAgentState extends State<ScreenOngoingProjectAgent> {
                   color: Colors.black, fontWeight: FontWeight.bold),
             ),
             centerTitle: true,
-            actions: [
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.error,
-                    color: Colors.black,
-                  ))
-            ],
+            
           ),
           body: Column(
             children: [
@@ -151,10 +145,12 @@ class _ScreenOngoingProjectAgentState extends State<ScreenOngoingProjectAgent> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      Text("Start Date: ${data["startDate"]}",
-                                          style: GoogleFonts.alata(
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w600)),
+                                      Flexible(
+                                        child: Text("Start Date: ${data["startDate"]}",
+                                            style: GoogleFonts.alata(
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w600)),
+                                      ),
                                       Text("End Date: ${data["endDate"]}",
                                           style: GoogleFonts.alata(
                                               fontSize: 13,

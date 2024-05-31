@@ -248,6 +248,24 @@ class FunProvider extends ChangeNotifier {
   //     },
   //   );
   // }
+
+
+  String? selectedtype;
+
+  void  valuechange(value){
+
+      selectedtype = value as String; 
+    }
+
+
+
+
+
+
+
+
+
+
   final updateagentname = TextEditingController();
 
   //admin login function
@@ -360,6 +378,8 @@ class FunProvider extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  List<File> _imageList = [];
 
   pickimageforpassport() async {
     ImagePicker imagePicker = ImagePicker();

@@ -15,6 +15,7 @@ import 'package:secure_kare/viewmodel/manager.dart';
 import 'package:secure_kare/viewmodel/policecontroll.dart';
 import 'package:secure_kare/viewmodel/ui_work_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:secure_kare/viewmodel/user_report_service.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -56,7 +57,8 @@ class MyApp extends StatelessWidget {
             },
           ),
           ChangeNotifierProvider(create: (context) => Maneger()),
-          ChangeNotifierProvider(create: (context) => PoliceControler())
+          ChangeNotifierProvider(create: (context) => PoliceControler()),
+          ChangeNotifierProvider(create: (context)=>UserReportService())
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -67,7 +69,10 @@ class MyApp extends StatelessWidget {
             // primarySwatch: Colors.blue,
           ),
           home:
-           kIsWeb ? AdminLogin() :
+           kIsWeb ?
+            AdminLogin()
+            // AdminHome()
+            :
             ScreenSplash(),
         ));
   }

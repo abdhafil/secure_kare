@@ -7,6 +7,8 @@ class WorkersModel {
   String? workerimage;
   String? id;
   String agencyId;
+  String selectedusertype;
+  List indentity;
   WorkersModel(
       {required this.workersname,
       required this.agencyId,
@@ -15,6 +17,12 @@ class WorkersModel {
       required this.workersemail,
       required this.workerspassword,
       required this.workerimage,
+      required this.selectedusertype,
+      required  this.indentity,
+
+      
+
+      
       this.id});
 
   Map<String, dynamic> toJson(docId) => {
@@ -25,7 +33,9 @@ class WorkersModel {
         "workerspassword": workerspassword,
         "workerimage": workerimage,
         "agencyId":agencyId,
-        "id": docId
+        "id": docId,
+        'usertype':selectedusertype,
+        'indentity':indentity
       };
   factory WorkersModel.fromJson(Map<String, dynamic> json) {
     return WorkersModel(
@@ -37,6 +47,8 @@ class WorkersModel {
       workersemail: json["workersemail"],
       workerspassword: json["workerspassword"],
       workerimage: json["workerimage"],
+      selectedusertype: json['usertype'],
+      indentity: json['indentity']
     );
   }
 }

@@ -18,7 +18,7 @@ class ScreenUpdtPswdSttngAbt extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Text(
-          "Work force kerela",
+          "SecureKare",
           style: GoogleFonts.nunitoSans(color: Colors.black),
         ),
         centerTitle: true,
@@ -169,6 +169,7 @@ class ScreenUpdtPswdSttngAbt extends StatelessWidget {
           ],
         ),
       ),
+      
     );
   }
 }

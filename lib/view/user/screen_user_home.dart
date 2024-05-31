@@ -40,7 +40,7 @@ class _ScreenReportProblemsState extends State<ScreenUserHome> {
             }),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 70, top: 710),
+            padding: const EdgeInsets.only(left: 120, top: 710),
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
                 onPressed: () {
@@ -51,7 +51,7 @@ class _ScreenReportProblemsState extends State<ScreenUserHome> {
                   ));
                 },
                 child: SizedBox(
-                  width: 210,
+                  width:180,
                   child: Row(
                     children: [
                       Text(
@@ -59,7 +59,7 @@ class _ScreenReportProblemsState extends State<ScreenUserHome> {
                         style: GoogleFonts.nunitoSans(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
-                            fontSize: 18),
+                            fontSize: 10),
                       ),
                       const Icon(
                         Icons.arrow_right,

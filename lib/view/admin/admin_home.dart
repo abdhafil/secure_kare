@@ -29,10 +29,12 @@ class AdminHome extends StatelessWidget {
     return Scaffold(
       body: Row(
         children: [
+          
           const CustomeDrawer(),
           Consumer<AdminController>(builder: (context, controller, child) {
             return Expanded(child: pages[controller.selectedIndex]);
-          })
+          }),
+         
         ],
       ),
     );

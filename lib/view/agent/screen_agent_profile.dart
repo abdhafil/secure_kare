@@ -46,6 +46,7 @@ class ScreenAgentProfile extends StatelessWidget {
               }
               return Center(
                 child: Column(
+                    
                   children: [
                     SizedBox(
                         width: 150,

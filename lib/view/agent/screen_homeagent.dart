@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:secure_kare/screen_splash.dart';
 import 'package:secure_kare/view/agent/screen_aboutusagent.dart';
 import 'package:secure_kare/view/agent/screen_add_manager.dart';
 import 'package:secure_kare/view/agent/screen_add_project.dart';
@@ -121,240 +123,277 @@ class AgentDrawer extends StatelessWidget {
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(20), bottomRight: Radius.circular(20))),
       backgroundColor: const Color.fromARGB(255, 9, 17, 61),
-      child: Column(
-        children: [
-          Padding(
-            padding:
-                const EdgeInsets.only(left: 10, right: 10, bottom: 3, top: 60),
-            child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15))),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ScreenAgentProfile(),
-                  ));
-                },
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.arrow_right,
-                      color: Colors.white,
-                    ),
-                    Text(
-                      "Profile",
-                      style:
-                          GoogleFonts.corben(color: Colors.white, fontSize: 12),
-                    ),
-                  ],
-                )),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 3),
-            child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15))),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const ScreenAgentAddProject(),
-                  ));
-                },
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.arrow_right,
-                      color: Colors.white,
-                    ),
-                    Text(
-                      "Add Projects",
-                      style:
-                          GoogleFonts.corben(color: Colors.white, fontSize: 12),
-                    ),
-                  ],
-                )),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 3),
-            child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15))),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ScreenAgentAvailableManagers(),
-                  ));
-                },
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.arrow_right,
-                      color: Colors.white,
-                    ),
-                    Text(
-                      "Managers",
-                      style:
-                          GoogleFonts.corben(color: Colors.white, fontSize: 12),
-                    ),
-                  ],
-                )),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 3),
-            child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15))),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ScreenOngoingProjectAgent(),
-                  ));
-                },
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.arrow_right,
-                      color: Colors.white,
-                    ),
-                    Text(
-                      "Ongoing projects",
-                      style:
-                          GoogleFonts.corben(color: Colors.white, fontSize: 12),
-                    ),
-                  ],
-                )),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 3),
-            child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15))),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) {
-                      return const ScreenNotificationAgent();
-                    },
-                  ));
-                },
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.arrow_right,
-                      color: Colors.white,
-                    ),
-                    Text(
-                      "Notifcation",
-                      style:
-                          GoogleFonts.corben(color: Colors.white, fontSize: 12),
-                    ),
-                  ],
-                )),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 3),
-            child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15))),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ScreenAddWorker()));
-                },
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.arrow_right,
-                      color: Colors.white,
-                    ),
-                    Text(
-                      "Add Workers",
-                      style:
-                          GoogleFonts.corben(color: Colors.white, fontSize: 12),
-                    ),
-                  ],
-                )),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 3),
-            child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15))),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ScreenAddManager(),
-                  ));
-                },
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.arrow_right,
-                      color: Colors.white,
-                    ),
-                    Text(
-                      "Add managers",
-                      style:
-                          GoogleFonts.corben(color: Colors.white, fontSize: 12),
-                    ),
-                  ],
-                )),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 3),
-            child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15))),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const ScreenAgentAboutUs(),
-                  ));
-                },
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.arrow_right,
-                      color: Colors.white,
-                    ),
-                    Text(
-                      "About",
-                      style:
-                          GoogleFonts.corben(color: Colors.white, fontSize: 12),
-                    ),
-                  ],
-                )),
-          ),
-          const SizedBox(
-            height: 45,
-          ),
-          // Row(
-          //   children: [
-          //     const SizedBox(
-          //       width: 50,
-          //     ),
-          //     const Icon(
-          //       Icons.arrow_right,
-          //       color: Colors.white,
-          //     ),
-          //     TextButton(
-          //         onPressed: () {},
-          //         child: Text(
-          //           "Logout",
-          //           style:
-          //               GoogleFonts.corben(color: Colors.white, fontSize: 12),
-          //         ))
-          //   ],
-          // )
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 10, right: 10, bottom: 3, top: 60),
+              child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15))),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ScreenAgentProfile(),
+                    ));
+                  },
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.arrow_right,
+                        color: Colors.white,
+                      ),
+                      Text(
+                        "Profile",
+                        style: GoogleFonts.corben(
+                            color: Colors.white, fontSize: 12),
+                      ),
+                    ],
+                  )),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10, bottom: 3),
+              child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15))),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const ScreenAgentAddProject(),
+                    ));
+                  },
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.arrow_right,
+                        color: Colors.white,
+                      ),
+                      Text(
+                        "Add Projects",
+                        style: GoogleFonts.corben(
+                            color: Colors.white, fontSize: 12),
+                      ),
+                    ],
+                  )),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10, bottom: 3),
+              child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15))),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ScreenAgentAvailableManagers(),
+                    ));
+                  },
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.arrow_right,
+                        color: Colors.white,
+                      ),
+                      Text(
+                        "Managers",
+                        style: GoogleFonts.corben(
+                            color: Colors.white, fontSize: 12),
+                      ),
+                    ],
+                  )),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10, bottom: 3),
+              child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15))),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ScreenOngoingProjectAgent(),
+                    ));
+                  },
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.arrow_right,
+                        color: Colors.white,
+                      ),
+                      Text(
+                        "Ongoing projects",
+                        style: GoogleFonts.corben(
+                            color: Colors.white, fontSize: 12),
+                      ),
+                    ],
+                  )),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10, bottom: 3),
+              child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15))),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) {
+                        return const ScreenNotificationAgent();
+                      },
+                    ));
+                  },
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.arrow_right,
+                        color: Colors.white,
+                      ),
+                      Text(
+                        "Notifcation",
+                        style: GoogleFonts.corben(
+                            color: Colors.white, fontSize: 12),
+                      ),
+                    ],
+                  )),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10, bottom: 3),
+              child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15))),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ScreenAddWorker()));
+                  },
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.arrow_right,
+                        color: Colors.white,
+                      ),
+                      Text(
+                        "Add Workers",
+                        style: GoogleFonts.corben(
+                            color: Colors.white, fontSize: 12),
+                      ),
+                    ],
+                  )),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10, bottom: 3),
+              child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15))),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ScreenAddManager(),
+                    ));
+                  },
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.arrow_right,
+                        color: Colors.white,
+                      ),
+                      Text(
+                        "Add managers",
+                        style: GoogleFonts.corben(
+                            color: Colors.white, fontSize: 12),
+                      ),
+                    ],
+                  )),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10, bottom: 3),
+              child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15))),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const ScreenAgentAboutUs(),
+                    ));
+                  },
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.arrow_right,
+                        color: Colors.white,
+                      ),
+                      Text(
+                        "About",
+                        style: GoogleFonts.corben(
+                            color: Colors.white, fontSize: 12),
+                      ),
+                    ],
+                  )),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            // Row(
+            //   children: [
+            //     const SizedBox(
+            //       width: 50,
+            //     ),
+            //     const Icon(
+            //       Icons.arrow_right,
+            //       color: Colors.white,
+            //     ),
+            //     TextButton(
+            //         onPressed: () {},
+            //         child: Text(
+            //           "Logout",
+            //           style:
+            //               GoogleFonts.corben(color: Colors.white, fontSize: 12),
+            //         ))
+            //   ],
+            // )
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10, bottom: 3),
+              child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15))),
+                  onPressed: () async {
+                    await FirebaseAuth.instance.signOut().then((value) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ScreenSplash(),
+                        ),
+                      );
+                    });
+
+                    // Navigator.of(context).push(MaterialPageRoute(
+                    //   builder: (context) => const ScreenAgentAboutUs(),
+                    // ));
+                  },
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.arrow_right,
+                        color: Colors.white,
+                      ),
+                      Text(
+                        "logout",
+                        style: GoogleFonts.corben(
+                            color: Colors.white, fontSize: 12),
+                      ),
+                    ],
+                  )),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -12,6 +12,8 @@ class AdminLogin extends StatelessWidget {
   final passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+   final  width = MediaQuery.of(context).size.width;
+  final  height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Row(
         children: [
@@ -20,6 +22,9 @@ class AdminLogin extends StatelessWidget {
               key: _formKey,
               child: Column(
                 children: [
+                  SizedBox(
+                    height: height*.30,
+                  ),
                   Text(
                     "Login as an admin",
                     style: GoogleFonts.signikaNegative(
@@ -28,7 +33,7 @@ class AdminLogin extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  Expanded(flex: 1, child: SizedBox()),
+                  
                   SizedBox(
                     width: MediaQuery.of(context).size.width * .2,
                     child: Column(
@@ -88,14 +93,7 @@ class AdminLogin extends StatelessWidget {
                               value: false,
                               onChanged: (value) {},
                             ),
-                            TextButton(
-                                onPressed: () {},
-                                child: Text(
-                                  'Forgot password?',
-                                  style: GoogleFonts.catamaran(
-                                      color: const Color.fromARGB(
-                                          255, 219, 46, 34)),
-                                )),
+                      
                           ],
                         ),
                         SizedBox(

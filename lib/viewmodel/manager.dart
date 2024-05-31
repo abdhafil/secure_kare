@@ -17,6 +17,14 @@ class Maneger with ChangeNotifier {
       return ProjectDetailsModel.fromJson(e.data());
     }).toList();
 
+
+
+
+
+    
+
+
+
     // snapshot.listen((snapshot) {
     //   project = snapshot.docs.map((e) {
     //     return ProjectDetailsModel.fromJson(e.data() as Map<String, dynamic>);

@@ -172,7 +172,7 @@ class _ScreenVerifiedRegisstrationsState
                                 ],
                               ),
                               const SizedBox(
-                                width: 150,
+                                width: 290,
                               ),
                               Text(
                                 "Location",

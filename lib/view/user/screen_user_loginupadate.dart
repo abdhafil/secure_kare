@@ -45,14 +45,27 @@ class ScreenUserLogin extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  TextField(
+                 
+                  // password
+                  Consumer<WorkProvider>(builder: (context, workprvdr, child) {
+                    return TextField(
+                    obscureText: workprovider.isobsucure,
+                    
                     controller: funprovider.workerlogpassword,
                     decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                        onPressed: ()
+                        {
+                          workprovider.togle();
+                        },
+                        icon: Icon (workprovider.isobsucure ?  Icons.visibility_off : Icons.visibility),
+                      ),
                         hintText: "Password",
                         hintStyle: GoogleFonts.sarabun(),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10))),
-                  ),
+                  );
+                  },),
                   const SizedBox(
                     height: 20,
                   ),
